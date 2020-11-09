@@ -15,6 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BackEndApiTemplate\BackEndApiTemplate.csproj" />
+    <ProjectReference Include="..\CourtApi\CourtApi.csproj" />
   </ItemGroup>
 </Project>
