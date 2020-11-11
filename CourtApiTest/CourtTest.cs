@@ -20,7 +20,11 @@ namespace CourtApiTest
             CourtCase courtCase = new CourtCase()
             {
                 Name = "Test",
-                CreatedDate = DateTime.Now
+                CreatedDate = DateTime.Now,
+                Procuratorate = new Procuratorate()
+                {
+                    Name = "Procuratorate name"
+                }
             };
 
             CourtDbContext.CourtCases.Add(courtCase);
@@ -67,7 +71,11 @@ namespace CourtApiTest
             CourtCase courtCase = new CourtCase()
             {
                 Name = "Test",
-                CreatedDate = DateTime.Now
+                CreatedDate = DateTime.Now,
+                Procuratorate = new Procuratorate()
+                {
+                    Name = "Procuratorate name"
+                }
             };
 
             CourtDbContext.CourtCases.Add(courtCase);
@@ -86,13 +94,21 @@ namespace CourtApiTest
             CourtCase firstCourtCase = new CourtCase()
             {
                 Name = "FirstCourt",
-                CreatedDate = new DateTime(2020, 11, 11)
+                CreatedDate = new DateTime(2020, 11, 11),
+                Procuratorate = new Procuratorate()
+                {
+                    Name = "Procuratorate name 1"
+                }
             };
 
             CourtCase secondCourtCase = new CourtCase()
             {
                 Name = "SecondCourt",
-                CreatedDate = new DateTime(2020, 11, 12)
+                CreatedDate = new DateTime(2020, 11, 12),
+                Procuratorate = new Procuratorate()
+                {
+                    Name = "Procuratorate name 2"
+                }
             };
 
             CourtDbContext.CourtCases.Add(firstCourtCase);
@@ -112,19 +128,31 @@ namespace CourtApiTest
             CourtCase firstCourtCase = new CourtCase()
             {
                 Name = "FirstCourt",
-                CreatedDate = new DateTime(2020, 11, 11)
+                CreatedDate = new DateTime(2020, 11, 11),
+                Procuratorate = new Procuratorate()
+                {
+                    Name = "Procuratorate name 1"
+                }
             };
 
             CourtCase secondCourtCase = new CourtCase()
             {
                 Name = "SecondCourt",
-                CreatedDate = new DateTime(2020, 11, 12)
+                CreatedDate = new DateTime(2020, 11, 12),
+                Procuratorate = new Procuratorate()
+                {
+                    Name = "Procuratorate name 2"
+                }
             };
 
             CourtCase otherCourtCase = new CourtCase()
             {
                 Name = "otherName",
-                CreatedDate = new DateTime(2020, 11, 12)
+                CreatedDate = new DateTime(2020, 11, 12),
+                Procuratorate = new Procuratorate()
+                {
+                    Name = "Procuratorate name 3"
+                }
             };
 
             CourtDbContext.CourtCases.Add(firstCourtCase);

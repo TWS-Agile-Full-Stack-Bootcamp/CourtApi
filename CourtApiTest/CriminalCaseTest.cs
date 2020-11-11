@@ -20,19 +20,20 @@ namespace CourtApiTest
                 Name = "Name",
                 Objective = "Objective",
                 Subjective = "Subjective",
+                Procuratorate = new Procuratorate()
+                {
+                    Name = "Procuratorate name"
+                }
             };
-            using (CourtDbContext)
-            {
-                this.CourtDbContext.CourtCases.Add(criminalCase);
-                this.CourtDbContext.SaveChanges();
+            this.CourtDbContext.CriminalCases.Add(criminalCase);
+            this.CourtDbContext.SaveChanges();
 
-                var foundCaseDetail =
-                    this.CourtDbContext.CourtCases.First(caseDetail => caseDetail.Id == 1) as CriminalCase;
+            var foundCaseDetail =
+                this.CourtDbContext.CriminalCases.First(caseDetail => caseDetail.Id == 1);
 
-                Assert.Equal(criminalCase.Id, foundCaseDetail.Id);
-                Assert.Equal(criminalCase.Objective, foundCaseDetail.Objective);
-                Assert.Equal(criminalCase.Subjective, foundCaseDetail.Subjective);
-            }
+            Assert.Equal(criminalCase.Id, foundCaseDetail.Id);
+            Assert.Equal(criminalCase.Objective, foundCaseDetail.Objective);
+            Assert.Equal(criminalCase.Subjective, foundCaseDetail.Subjective);
         }
 
         [Fact]
@@ -43,27 +44,27 @@ namespace CourtApiTest
                 Name = "Name",
                 Objective = "Objective",
                 Subjective = "Subjective",
+                Procuratorate = new Procuratorate()
+                {
+                    Name = "Procuratorate name"
+                }
             };
 
-            await using (CourtDbContext)
-            {
-                await this.CourtDbContext.CourtCases.AddAsync(criminalCase);
-                await this.CourtDbContext.SaveChangesAsync();
+            await this.CourtDbContext.CriminalCases.AddAsync(criminalCase);
+            await this.CourtDbContext.SaveChangesAsync();
 
-                var foundCaseDetail =
-                    await this.CourtDbContext.CourtCases.FirstAsync(caseDetail => caseDetail.Id == criminalCase.Id) as
-                        CriminalCase;
+            var foundCaseDetail =
+                await this.CourtDbContext.CriminalCases.FirstAsync(caseDetail => caseDetail.Id == criminalCase.Id);
 
-                foundCaseDetail.Objective = "updated Objective";
-                foundCaseDetail.Subjective = "updated Subjective";
+            foundCaseDetail.Objective = "updated Objective";
+            foundCaseDetail.Subjective = "updated Subjective";
 
-                this.CourtDbContext.CourtCases.Update(foundCaseDetail);
-                this.CourtDbContext.SaveChanges();
+            this.CourtDbContext.CourtCases.Update(foundCaseDetail);
+            this.CourtDbContext.SaveChanges();
 
-                Assert.Equal(criminalCase.Id, foundCaseDetail.Id);
-                Assert.Equal("updated Objective", foundCaseDetail.Objective);
-                Assert.Equal("updated Subjective", foundCaseDetail.Subjective);
-            }
+            Assert.Equal(criminalCase.Id, foundCaseDetail.Id);
+            Assert.Equal("updated Objective", foundCaseDetail.Objective);
+            Assert.Equal("updated Subjective", foundCaseDetail.Subjective);
         }
     }
 }

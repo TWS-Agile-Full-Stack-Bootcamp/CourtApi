@@ -26,7 +26,6 @@ namespace CourtApiTest
         [Fact]
         public void Should_no_create_procuratorate_when_name_are_repetitions()
         {
-            var longName = string.Join(string.Empty, Enumerable.Range(0, 56).Select(s => s.ToString()));
             Procuratorate procuratorate = new Procuratorate()
             {
                 Name = "name"
@@ -38,6 +37,18 @@ namespace CourtApiTest
                 this.CourtDbContext.Procuratorates.Add(procuratorate);
                 this.CourtDbContext.SaveChanges();
             });
+        }
+
+        [Fact]
+        public void Should_create_procuratorate_success()
+        {
+            Procuratorate procuratorate = new Procuratorate()
+            {
+                Name = "name"
+            };
+
+            this.CourtDbContext.Procuratorates.Add(procuratorate);
+            this.CourtDbContext.SaveChanges();
         }
     }
 }

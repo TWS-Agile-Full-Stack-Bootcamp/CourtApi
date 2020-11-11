@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CourtApi.Models
 {
@@ -10,5 +12,7 @@ namespace CourtApi.Models
         [Required]
         [Key]
         public string Name { get; set; }
+
+        public IList<Prosecutor> Prosecutors { get; set; }
     }
 }
