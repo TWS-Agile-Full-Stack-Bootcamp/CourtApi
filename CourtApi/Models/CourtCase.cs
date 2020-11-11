@@ -7,11 +7,10 @@ namespace CourtApi.Models
     {
         public int Id { get; set; }
 
-        [StringLength(255)]
-        [Required]
-        public string Name { get; set; }
+        [StringLength(255)] [Required] public string Name { get; set; }
 
-        [Required]
-        public DateTime? CreatedDate { get; set; }
+        [Required] public DateTime? CreatedDate { get; set; }
+
+        public CaseDetail Detail { get; set; }
     }
 }
