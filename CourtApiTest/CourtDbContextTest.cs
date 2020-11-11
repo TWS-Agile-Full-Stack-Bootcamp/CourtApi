@@ -67,5 +67,24 @@ namespace CourtApiTest
                 courtDbContext.SaveChanges();
             });
         }
+
+        [Fact]
+        public void Should_get_court_case_by_case_id()
+        {
+            CourtCase courtCase = new CourtCase()
+            {
+                Name = "Test",
+                CreatedDate = DateTime.Now
+            };
+
+            courtDbContext.CourtCases.Add(courtCase);
+            courtDbContext.SaveChanges();
+
+            var foundCourtCase = courtDbContext.CourtCases.First(court => court.Id == courtCase.Id);
+
+            Assert.Equal(courtCase.Id, foundCourtCase.Id);
+            Assert.Equal(courtCase.Name, foundCourtCase.Name);
+            Assert.Equal(courtCase.CreatedDate, foundCourtCase.CreatedDate);
+        }
     }
 }
