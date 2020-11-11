@@ -112,5 +112,40 @@ namespace CourtApiTest
             Assert.Equal(allCourtCases[1].Name, "SecondCourt");
             Assert.True(allCourtCases[0].CreatedDate < allCourtCases[1].CreatedDate);
         }
+
+        [Fact]
+        public void Should_search_by_name()
+        {
+            CourtCase firstCourtCase = new CourtCase()
+            {
+                Name = "FirstCourt",
+                CreatedDate = new DateTime(2020, 11, 11)
+            };
+
+            CourtCase secondCourtCase = new CourtCase()
+            {
+                Name = "SecondCourt",
+                CreatedDate = new DateTime(2020, 11, 12)
+            };
+
+            CourtCase otherCourtCase = new CourtCase()
+            {
+                Name = "otherName",
+                CreatedDate = new DateTime(2020, 11, 12)
+            };
+
+            courtDbContext.CourtCases.Add(firstCourtCase);
+            courtDbContext.CourtCases.Add(secondCourtCase);
+            courtDbContext.CourtCases.Add(otherCourtCase);
+            courtDbContext.SaveChanges();
+
+            string searchName = "Court";
+
+            var allCourtCases = courtDbContext.CourtCases.Where(c => c.Name.Contains(searchName)).ToList();
+            Assert.Equal(allCourtCases.Count, 2);
+            Assert.Equal(allCourtCases[0].Name, "FirstCourt");
+            Assert.Equal(allCourtCases[1].Name, "SecondCourt");
+            Assert.True(allCourtCases[0].CreatedDate < allCourtCases[1].CreatedDate);
+        }
     }
 }
