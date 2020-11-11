@@ -8,11 +8,6 @@ namespace CourtApiTest
 {
     public class ProcuratorateTest : BaseTest
     {
-        public ProcuratorateTest()
-            : base()
-        {
-        }
-
         [Fact]
         public void Should_no_create_procuratorate_when_name_length_greater_than_50()
         {

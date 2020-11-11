@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourtApi.Models
 {
@@ -7,20 +8,11 @@ namespace CourtApi.Models
     {
         public int Id { get; set; }
 
-        [StringLength(255)] [Required] public string Name { get; set; }
-
-        [Required] public DateTime? CreatedDate { get; set; }
-
-        public CriminalCase Detail { get; set; }
-    }
-
-    public class Procuratorate
-    {
-        public int Id { get; set; }
-
-        [StringLength(50)]
+        [StringLength(255)]
         [Required]
-        [Key]
         public string Name { get; set; }
+
+        [Required]
+        public DateTime CreatedDate { get; set; }
     }
 }

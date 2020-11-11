@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourtApi.Models
 {
-    public class CriminalCase
+    public class CriminalCase : CourtCase
     {
-        public int Id { get; set; }
-
         [StringLength(255)]
         [Required]
         public string Objective { get; set; }

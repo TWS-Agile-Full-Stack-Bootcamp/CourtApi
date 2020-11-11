@@ -25,7 +25,7 @@ namespace CourtApiTest
 
             CourtDbContext.CourtCases.Add(courtCase);
             CourtDbContext.SaveChanges();
-            Assert.Equal(1, courtCase.Id);
+            Assert.True(courtCase.Id > 0);
         }
 
         [Fact]
