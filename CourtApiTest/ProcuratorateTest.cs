@@ -29,13 +29,15 @@ namespace CourtApiTest
         }
 
         [Fact]
-        public void Should_no_create_procuratorate_when_name_is_null()
+        public void Should_no_create_procuratorate_when_name_are_repetitions()
         {
             var longName = string.Join(string.Empty, Enumerable.Range(0, 56).Select(s => s.ToString()));
             Procuratorate procuratorate = new Procuratorate()
             {
-                Name = null
+                Name = "name"
             };
+            this.CourtDbContext.Procuratorates.Add(procuratorate);
+            this.CourtDbContext.SaveChanges();
             Assert.Throws<DbUpdateException>(() =>
             {
                 this.CourtDbContext.Procuratorates.Add(procuratorate);

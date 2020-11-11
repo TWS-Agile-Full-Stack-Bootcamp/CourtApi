@@ -20,6 +20,7 @@ namespace CourtApi.Models
 
         [StringLength(50)]
         [Required]
+        [Key]
         public string Name { get; set; }
     }
 }
