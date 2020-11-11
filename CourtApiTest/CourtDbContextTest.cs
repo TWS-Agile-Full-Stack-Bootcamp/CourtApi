@@ -7,18 +7,11 @@ using Xunit;
 
 namespace CourtApiTest
 {
-    public class UnitTest1
+    public class CourtUnitTest : BaseTest
     {
-        private CourtDbContext courtDbContext;
-
-        public UnitTest1()
+        public CourtUnitTest()
+            : base()
         {
-            var builder =
-                new DbContextOptionsBuilder<CourtDbContext>().UseMySql(
-                    "server=10.211.55.2;user=root;database=court;password=pass;");
-            courtDbContext = new CourtDbContext(builder.Options);
-            courtDbContext.Database.EnsureDeleted();
-            courtDbContext.Database.EnsureCreated();
         }
 
         [Fact]
@@ -30,8 +23,8 @@ namespace CourtApiTest
                 CreatedDate = DateTime.Now
             };
 
-            courtDbContext.CourtCases.Add(courtCase);
-            courtDbContext.SaveChanges();
+            CourtDbContext.CourtCases.Add(courtCase);
+            CourtDbContext.SaveChanges();
             Assert.Equal(1, courtCase.Id);
         }
 
@@ -47,8 +40,8 @@ namespace CourtApiTest
 
             var exception = Assert.Throws<DbUpdateException>(() =>
             {
-                courtDbContext.CourtCases.Add(courtCase);
-                courtDbContext.SaveChanges();
+                CourtDbContext.CourtCases.Add(courtCase);
+                CourtDbContext.SaveChanges();
             });
         }
 
@@ -63,8 +56,8 @@ namespace CourtApiTest
 
             var exception = Assert.Throws<DbUpdateException>(() =>
             {
-                courtDbContext.CourtCases.Add(courtCase);
-                courtDbContext.SaveChanges();
+                CourtDbContext.CourtCases.Add(courtCase);
+                CourtDbContext.SaveChanges();
             });
         }
 
@@ -77,10 +70,10 @@ namespace CourtApiTest
                 CreatedDate = DateTime.Now
             };
 
-            courtDbContext.CourtCases.Add(courtCase);
-            courtDbContext.SaveChanges();
+            CourtDbContext.CourtCases.Add(courtCase);
+            CourtDbContext.SaveChanges();
 
-            var foundCourtCase = courtDbContext.CourtCases.First(court => court.Id == courtCase.Id);
+            var foundCourtCase = CourtDbContext.CourtCases.First(court => court.Id == courtCase.Id);
 
             Assert.Equal(courtCase.Id, foundCourtCase.Id);
             Assert.Equal(courtCase.Name, foundCourtCase.Name);
@@ -102,11 +95,11 @@ namespace CourtApiTest
                 CreatedDate = new DateTime(2020, 11, 12)
             };
 
-            courtDbContext.CourtCases.Add(firstCourtCase);
-            courtDbContext.CourtCases.Add(secondCourtCase);
-            courtDbContext.SaveChanges();
+            CourtDbContext.CourtCases.Add(firstCourtCase);
+            CourtDbContext.CourtCases.Add(secondCourtCase);
+            CourtDbContext.SaveChanges();
 
-            var allCourtCases = courtDbContext.CourtCases.OrderBy(c => c.CreatedDate).ToList();
+            var allCourtCases = CourtDbContext.CourtCases.OrderBy(c => c.CreatedDate).ToList();
             Assert.Equal(allCourtCases.Count, 2);
             Assert.Equal(allCourtCases[0].Name, "FirstCourt");
             Assert.Equal(allCourtCases[1].Name, "SecondCourt");
@@ -134,14 +127,14 @@ namespace CourtApiTest
                 CreatedDate = new DateTime(2020, 11, 12)
             };
 
-            courtDbContext.CourtCases.Add(firstCourtCase);
-            courtDbContext.CourtCases.Add(secondCourtCase);
-            courtDbContext.CourtCases.Add(otherCourtCase);
-            courtDbContext.SaveChanges();
+            CourtDbContext.CourtCases.Add(firstCourtCase);
+            CourtDbContext.CourtCases.Add(secondCourtCase);
+            CourtDbContext.CourtCases.Add(otherCourtCase);
+            CourtDbContext.SaveChanges();
 
             string searchName = "Court";
 
-            var allCourtCases = courtDbContext.CourtCases.Where(c => c.Name.Contains(searchName)).ToList();
+            var allCourtCases = CourtDbContext.CourtCases.Where(c => c.Name.Contains(searchName)).ToList();
             Assert.Equal(allCourtCases.Count, 2);
             Assert.Equal(allCourtCases[0].Name, "FirstCourt");
             Assert.Equal(allCourtCases[1].Name, "SecondCourt");
