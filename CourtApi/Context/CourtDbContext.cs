@@ -11,6 +11,8 @@ namespace CourtApi.Context
         }
 
         public DbSet<CourtCase> CourtCases { get; set; }
-        public DbSet<CaseDetail> CaseDetails { get; set; }
+        public DbSet<CriminalCase> CaseDetails { get; set; }
+
+        public DbSet<Procuratorate> Procuratorates { get; set; }
     }
 }

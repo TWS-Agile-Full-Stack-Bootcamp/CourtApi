@@ -7,9 +7,9 @@ using Xunit;
 
 namespace CourtApiTest
 {
-    public class CourtUnitTest : BaseTest
+    public class CourtTest : BaseTest
     {
-        public CourtUnitTest()
+        public CourtTest()
             : base()
         {
         }

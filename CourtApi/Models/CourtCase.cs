@@ -11,6 +11,15 @@ namespace CourtApi.Models
 
         [Required] public DateTime? CreatedDate { get; set; }
 
-        public CaseDetail Detail { get; set; }
+        public CriminalCase Detail { get; set; }
+    }
+
+    public class Procuratorate
+    {
+        public int Id { get; set; }
+
+        [StringLength(50)]
+        [Required]
+        public string Name { get; set; }
     }
 }

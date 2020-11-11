@@ -2,7 +2,7 @@
 
 namespace CourtApi.Models
 {
-    public class CaseDetail
+    public class CriminalCase
     {
         public int Id { get; set; }
 
